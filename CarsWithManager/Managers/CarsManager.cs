@@ -9,17 +9,17 @@ namespace CarsWithManager.Managers
 
         private static readonly List<Car> Data = new List<Car>
         {
-            new Car {Id=_nextId++, Model = "Amazon", Vendor = "Volvo", Price = 20},
-            new Car {Id=_nextId++, Model = "A8", Vendor = "Audi", Price = 30},
-            new Car {Id=_nextId++, Model = "Punto", Vendor = "Fiat", Price = 10}
+            new Car {Id=_nextId++, Model = "Amazon", Make = "Volvo", Price = 20},
+            new Car {Id=_nextId++, Model = "A8", Make = "Audi", Price = 30},
+            new Car {Id=_nextId++, Model = "Punto", Make = "Fiat", Price = 10}
         };
 
-        public List<Car> GetAll(string vendor=null, int? minPrice=null,  int? maxPrice=null)
+        public List<Car> GetAll(string vendor=null, int? minPrice=null, int? maxPrice=null)
         // int? = int + null
         {
             List<Car> cars = new List<Car>(Data);
             if (vendor != null)
-                cars = cars.FindAll(car => car.Vendor.StartsWith(vendor));
+                cars = cars.FindAll(car => car.Make.StartsWith(vendor));
             if (minPrice != null)
             {
                 cars = cars.FindAll(car => car.Price >= minPrice);
@@ -47,7 +47,7 @@ namespace CarsWithManager.Managers
         {
             Car car = Data.Find(c => c.Id == id);
             if (car == null) { return null; }
-            car.Vendor = updates.Vendor;
+            car.Make = updates.Make;
             car.Model = updates.Model;
             car.Price = updates.Price;
             return car;

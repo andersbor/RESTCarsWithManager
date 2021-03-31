@@ -39,11 +39,11 @@ namespace CarsWithManager.Managers.Tests
             Assert.IsNull(_manager.GetById(100));
 
             int howMany = _manager.GetAll().Count;
-            Car newCar = new Car {Vendor = "WV", Model = "Polo", Price=25};
+            Car newCar = new Car {Make = "WV", Model = "Polo", Price=25};
             Car c = _manager.Add(newCar);
             Assert.AreEqual(howMany +1, _manager.GetAll().Count);
 
-            Car updatedCar = _manager.Update(c.Id, new Car() {Vendor = "WV", Model = "Polo", Price = 26});
+            Car updatedCar = _manager.Update(c.Id, new Car() {Make = "WV", Model = "Polo", Price = 26});
             Assert.AreEqual(26, updatedCar.Price);
 
             Assert.IsNull(_manager.Update(100, null));
